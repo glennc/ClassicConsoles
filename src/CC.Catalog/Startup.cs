@@ -19,7 +19,7 @@ namespace CC.Catalog
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
 
             if (env.IsDevelopment())
             {
@@ -48,7 +48,6 @@ namespace CC.Catalog
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             //TODO: Exception Handler
             app.UseMvc();

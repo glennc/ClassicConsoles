@@ -17,13 +17,13 @@ namespace CC.Catalog.Controllers
         }
 
         [HttpGet("/products/{id}")]
-        public Product Get(int id)
+        public Product GetProduct(int productId)
         {
-            return _db.Products.Single(x=>x.Id == id);
+            return _db.Products.Single(x=>x.Id == productId);
         }
 
         [HttpGet("/products")]
-        public IEnumerable<Product> GetByProductId([FromQuery]int categoryId)
+        public IEnumerable<Product> GetProductsByCategoryId([FromQuery]int categoryId)
         {
             return _db.Products.Where(x=>x.Category.Id == categoryId);
         }
