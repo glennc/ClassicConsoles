@@ -19,7 +19,7 @@ namespace CC.Catalog
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("config.json");
 
             if (env.IsDevelopment())
             {
@@ -38,7 +38,7 @@ namespace CC.Catalog
         {
             // Add framework services
             services.AddDbContext<CatalogContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration["ConnectionString"]));
 
             services.AddMvcCore()
                     .AddJsonFormatters();

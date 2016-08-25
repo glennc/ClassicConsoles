@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CC.Web.Services
 {
-    interface ICatalogService
+    public interface ICatalogService
     {
         Task<Product> GetProduct(int productId);
         Task<IEnumerable<Product>> GetProductsByCategoryId(int categoryId);

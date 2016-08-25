@@ -16,7 +16,7 @@ namespace CC.Catalog.Controllers
             _db = db;
         }
 
-        [HttpGet("/products/{id}")]
+        [HttpGet("/products/{productId}")]
         public Product GetProduct(int productId)
         {
             return _db.Products.Single(x=>x.Id == productId);

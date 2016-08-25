@@ -15,10 +15,15 @@ namespace CC.Web
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
-        public Startup()
+
+        public IHostingEnvironment Environment {get; private set;}
+
+        public Startup(IHostingEnvironment env)
         {
+            Environment = env;
             Configuration = new ConfigurationBuilder()
-                                    .AddJsonFile("config.json", optional: true)
+                                    .SetBasePath(Environment.ContentRootPath)
+                                    .AddJsonFile("config.json")
                                     .AddEnvironmentVariables()
                                     .Build();
 
@@ -41,7 +46,7 @@ namespace CC.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(LogLevel.Debug);
 
             if (env.IsDevelopment())
             {
